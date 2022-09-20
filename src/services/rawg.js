@@ -2,7 +2,7 @@ const BASE_URL = 'https://api.rawg.io/api/';
 const API_KEY = '22c2c819f0e84887b6d8f5e4bca6287d';
 const PAGE_SIZE = 10;
 const POPULAR_GAMES_ENDPOINT = `games?key=${API_KEY}&dates=${getDates()[1]},${
-  getCurrentDate()[0]
+  getDates()[0]
 }&ordering=-rating&page_size=${PAGE_SIZE}`;
 
 export const POPULAR_GAMES_URL = `${BASE_URL}${POPULAR_GAMES_ENDPOINT}`;
