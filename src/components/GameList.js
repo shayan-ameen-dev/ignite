@@ -1,4 +1,7 @@
+import { useEffect } from 'react';
 // Redux
+import { useDispatch } from 'react-redux';
+import { fetchGames } from '../actions/gamesAction';
 import { useSelector } from 'react-redux';
 // Framer Motion
 import { motion } from 'framer-motion';
@@ -7,6 +10,12 @@ import styled from 'styled-components';
 import Game from './Game';
 
 const GameList = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGames());
+  }, [dispatch]);
+
   const { newGames, popularGames, upcomingGames } = useSelector(
     (state) => state.games
   );

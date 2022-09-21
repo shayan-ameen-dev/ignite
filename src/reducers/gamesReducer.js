@@ -5,7 +5,7 @@ const initialState = {
   upcomingGames: [],
 };
 
-function gamesReducer(state = initialState, action) {
+export default function gamesReducer(state = initialState, action) {
   switch (action.type) {
     case 'FETCH_GAMES':
       const { popularGames, upcomingGames, newGames } = action.payload;
@@ -19,5 +19,3 @@ function gamesReducer(state = initialState, action) {
       return state;
   }
 }
-
-export default gamesReducer;
