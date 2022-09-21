@@ -18,6 +18,18 @@ const GameList = () => {
           <Game game={game} key={game.id} />
         ))}
       </StyledGames>
+      <h2>Popular Games</h2>
+      <StyledGames>
+        {popularGames?.map((game) => (
+          <Game game={game} key={game.id} />
+        ))}
+      </StyledGames>
+      <h2>New Games</h2>
+      <StyledGames>
+        {newGames?.map((game) => (
+          <Game game={game} key={game.id} />
+        ))}
+      </StyledGames>
     </StyledGameList>
   );
 };
