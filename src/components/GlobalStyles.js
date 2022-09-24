@@ -12,8 +12,13 @@ const GlobalStyles = createGlobalStyle`
       width: 0.5rem;
 
     }
+   
     &::-webkit-scrollbar-thumb{
       background-color: darkgray;
+    }
+
+    &::-webkit-scrollbar-track{
+      background: #fff;
     }
   }
 
@@ -32,8 +37,9 @@ const GlobalStyles = createGlobalStyle`
   h3{
     font-size: 1.3rem;
     color: #333;
-    padding: 1.5rem;
+    padding: 1.5rem 0;
   }
+
   p{
     font-size: 1.2rem;
     line-height: 200%;
@@ -43,6 +49,10 @@ const GlobalStyles = createGlobalStyle`
   a{
     text-decoration: none;
     color: #333;
+  }
+
+  img{
+    display: block;
   }
 `;
 

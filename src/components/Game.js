@@ -1,3 +1,5 @@
+// Router
+import { Link } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { fetchDetails } from '../actions/detailsAction';
@@ -9,15 +11,18 @@ import { motion } from 'framer-motion';
 const Game = ({ game }) => {
   const dispatch = useDispatch();
   function fetchDetailsHandler() {
+    document.body.style.overflow = 'hidden';
     dispatch(fetchDetails(game.id));
   }
 
-  const { name, released, background_image } = game;
+  const { name, released, background_image, id } = game;
   return (
     <StyledGame onClick={fetchDetailsHandler}>
-      <h3>{name}</h3>
-      <p>{released}</p>
-      <StyledImage src={background_image} alt={name} />
+      <Link to={`game/${id}`}>
+        <h3>{name}</h3>
+        <p>{released}</p>
+        <img src={background_image} alt={name} />
+      </Link>
     </StyledGame>
   );
 };
@@ -27,12 +32,14 @@ const StyledGame = styled(motion.div)`
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 1rem;
-`;
+  cursor: pointer;
+  overflow: hidden;
 
-const StyledImage = styled(motion.img)`
-  width: 100%;
-  min-height: 40vh;
-  object-fit: cover;
+  img {
+    width: 100%;
+    min-height: 40vh;
+    object-fit: cover;
+  }
 `;
 
 export default Game;

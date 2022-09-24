@@ -1,4 +1,6 @@
 import { useEffect } from 'react';
+// Router
+import { useLocation } from 'react-router-dom';
 // Redux
 import { useDispatch } from 'react-redux';
 import { fetchGames } from '../actions/gamesAction';
@@ -8,6 +10,7 @@ import { motion } from 'framer-motion';
 // Styled Components
 import styled from 'styled-components';
 import Game from './Game';
+import GameDetails from './GameDetails';
 
 const GameList = () => {
   const dispatch = useDispatch();
@@ -19,8 +22,13 @@ const GameList = () => {
   const { newGames, popularGames, upcomingGames } = useSelector(
     (state) => state.games
   );
+
+  const { pathname } = useLocation();
+  const gameId = pathname.split('/')[2];
+
   return (
     <StyledGameList>
+      {gameId && <GameDetails />}
       <h2>Upcoming Games</h2>
       <StyledGames>
         {upcomingGames?.map((game) => (
