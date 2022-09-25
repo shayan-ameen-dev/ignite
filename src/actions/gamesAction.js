@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   getNewGamesUrl,
   getPopularGamesUrl,
+  getSearchedGamesUrl,
   getUpcomingGamesUrl,
 } from '../services/rawg';
 
@@ -21,6 +22,21 @@ export function fetchGames() {
         newGames: newGamesResponse.data.results,
         popularGames: popularGamesResponse.data.results,
         upcomingGames: upcomingGamesResponse.data.results,
+      },
+    });
+  };
+}
+
+export function fetchSearchedGames(gameName) {
+  return async (dispatch) => {
+    const searchedGamesResponse = await axios.get(
+      getSearchedGamesUrl(gameName)
+    );
+
+    dispatch({
+      type: 'FETCH_SEARCHED_GAMES',
+      payload: {
+        searchedGames: searchedGamesResponse.data.results,
       },
     });
   };

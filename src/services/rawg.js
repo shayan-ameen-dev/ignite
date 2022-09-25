@@ -34,6 +34,10 @@ export function getGameScreenshotsUrl(gameId) {
   return `${BASE_URL}games/${gameId}/screenshots?key=${API_KEY}`;
 }
 
+export function getSearchedGamesUrl(gameName) {
+  return `${BASE_URL}games?key=${API_KEY}&search=${gameName}&page_size=${PAGE_SIZE}`;
+}
+
 function getDates() {
   const date = new Date().getDate();
   const formatedDate = date < 10 ? '0' + date : date;

@@ -136,15 +136,7 @@ const StyledCardShadow = styled(motion.div)`
   z-index: 5;
 
   &::-webkit-scrollbar {
-    width: 0.5rem;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #ff7676;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #fff;
+    width: 0rem;
   }
 `;
 

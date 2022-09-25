@@ -19,9 +19,8 @@ const GameList = () => {
     dispatch(fetchGames());
   }, [dispatch]);
 
-  const { newGames, popularGames, upcomingGames, isLoading } = useSelector(
-    (state) => state.games
-  );
+  const { newGames, popularGames, upcomingGames, searchedGames, isLoading } =
+    useSelector((state) => state.games);
 
   const { pathname } = useLocation();
   const gameId = pathname.split('/')[2];
@@ -34,6 +33,16 @@ const GameList = () => {
             <AnimatePresence>
               {gameId && <GameDetails gameId={gameId} />}
             </AnimatePresence>
+            {searchedGames?.length ? (
+              <>
+                <h2>Searched Games</h2>
+                <StyledGames>
+                  {searchedGames?.map((game) => (
+                    <Game game={game} key={game.id} />
+                  ))}
+                </StyledGames>
+              </>
+            ) : null}
             <h2>Upcoming Games</h2>
             <StyledGames>
               {upcomingGames?.map((game) => (

@@ -22,11 +22,11 @@ const Game = ({ game }) => {
     <>
       {id && name && released && background_image ? (
         <StyledGame layoutId={String(id)} onClick={fetchDetailsHandler}>
-          <Link to={`game/${id}`}>
-            <motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
+          <Link to={`/game/${id}`}>
+            <motion.h3 layoutId={`title ${String(id)}`}>{name}</motion.h3>
             <p>{released}</p>
             <motion.img
-              layoutId={`image ${id}`}
+              layoutId={`image ${String(id)}`}
               src={getResizedImagePath(background_image, 640)}
               alt={name}
             />

@@ -17,6 +17,18 @@ export default function gamesReducer(state = initialState, action) {
         upcomingGames,
         isLoading: false,
       };
+    case 'FETCH_SEARCHED_GAMES':
+      const { searchedGames } = action.payload;
+      return {
+        ...state,
+        searchedGames,
+        isLoading: false,
+      };
+    case 'CLEAR_SEARCHED_GAMES':
+      return {
+        ...state,
+        searchedGames: [],
+      };
     case 'LOADING_GAMES':
       return {
         ...state,

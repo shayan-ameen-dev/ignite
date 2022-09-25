@@ -9,17 +9,9 @@ const GlobalStyles = createGlobalStyle`
 
   html{
     &::-webkit-scrollbar{
-      width: 0.5rem;
-
+      width: 0rem;
     }
    
-    &::-webkit-scrollbar-thumb{
-      background-color: darkgray;
-    }
-
-    &::-webkit-scrollbar-track{
-      background: #fff;
-    }
   }
 
   body{
@@ -53,6 +45,11 @@ const GlobalStyles = createGlobalStyle`
 
   img{
     display: block;
+  }
+
+  input{
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
   }
 `;
 
