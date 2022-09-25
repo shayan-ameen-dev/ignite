@@ -20,8 +20,9 @@ const GameList = () => {
     dispatch(fetchGames());
   }, [dispatch]);
 
-  const { newGames, popularGames, upcomingGames, searchedGames, isLoading } =
-    useSelector((state) => state.games);
+  const { popularGames, upcomingGames, searchedGames, isLoading } = useSelector(
+    (state) => state.games
+  );
 
   const { pathname } = useLocation();
   const gameId = pathname.split('/')[2];
@@ -44,21 +45,15 @@ const GameList = () => {
                 </StyledGames>
               </>
             ) : null}
-            <h2>Upcoming Games</h2>
-            <StyledGames>
-              {upcomingGames?.map((game) => (
-                <Game game={game} key={game.id} />
-              ))}
-            </StyledGames>
             <h2>Popular Games</h2>
             <StyledGames>
               {popularGames?.map((game) => (
                 <Game game={game} key={game.id} />
               ))}
             </StyledGames>
-            <h2>New Games</h2>
+            <h2>Upcoming Games</h2>
             <StyledGames>
-              {newGames?.map((game) => (
+              {upcomingGames?.map((game) => (
                 <Game game={game} key={game.id} />
               ))}
             </StyledGames>

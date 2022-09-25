@@ -18,14 +18,6 @@ export function getUpcomingGamesUrl() {
   return `${BASE_URL}${UPCOMING_GAMES_ENDPOINT}`;
 }
 
-export function getNewGamesUrl() {
-  const NEW_GAMES_ENDPOINT = `games?key=${API_KEY}&dates=${
-    getDates().current
-  },${getDates().next}&ordering=-released&page_size=${PAGE_SIZE}`;
-
-  return `${BASE_URL}${NEW_GAMES_ENDPOINT}`;
-}
-
 export function getGameDelailsUrl(gameId) {
   return `${BASE_URL}games/${gameId}?key=${API_KEY}`;
 }
