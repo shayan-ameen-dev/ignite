@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 // Framer Motion
 import { motion } from 'framer-motion';
+// Utils
 import { getResizedImagePath } from '../utils';
 
-const GameDetails = () => {
+const GameDetails = ({ gameId }) => {
   const navigate = useNavigate();
 
   function exitGameDetailsHandler(event) {
@@ -31,10 +32,12 @@ const GameDetails = () => {
           className='card-shadow'
           onClick={exitGameDetailsHandler}
         >
-          <StyledDetails>
+          <StyledDetails layoutId={gameId}>
             <StyledStats>
               <StyledRating>
-                <h3>{gameDetails?.name}</h3>
+                <motion.h3 layoutId={`title ${gameId}`}>
+                  {gameDetails?.name}
+                </motion.h3>
                 <p>Rating: {gameDetails?.rating}</p>
               </StyledRating>
               <StyledInfo>
@@ -49,7 +52,8 @@ const GameDetails = () => {
               </StyledInfo>
             </StyledStats>
             <StyledMedia>
-              <img
+              <motion.img
+                layoutId={`image ${gameId}`}
                 src={getResizedImagePath(gameDetails?.background_image, 1280)}
                 alt='game'
               />
@@ -59,7 +63,7 @@ const GameDetails = () => {
             </StyledDescription>
             <StyledGallery>
               {gameScreenshots.results?.map((gameScreenshot) => (
-                <img
+                <motion.img
                   src={getResizedImagePath(gameScreenshot.image, 1280)}
                   key={gameScreenshot.id}
                   alt='game'

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { fetchGames } from '../actions/gamesAction';
 import { useSelector } from 'react-redux';
 // Framer Motion
-import { motion } from 'framer-motion';
+import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 // Styled Components
 import styled from 'styled-components';
 import Game from './Game';
@@ -30,25 +30,29 @@ const GameList = () => {
     <>
       {!isLoading && (
         <StyledGameList>
-          {gameId && <GameDetails />}
-          <h2>Upcoming Games</h2>
-          <StyledGames>
-            {upcomingGames?.map((game) => (
-              <Game game={game} key={game.id} />
-            ))}
-          </StyledGames>
-          <h2>Popular Games</h2>
-          <StyledGames>
-            {popularGames?.map((game) => (
-              <Game game={game} key={game.id} />
-            ))}
-          </StyledGames>
-          <h2>New Games</h2>
-          <StyledGames>
-            {newGames?.map((game) => (
-              <Game game={game} key={game.id} />
-            ))}
-          </StyledGames>
+          <LayoutGroup>
+            <AnimatePresence>
+              {gameId && <GameDetails gameId={gameId} />}
+            </AnimatePresence>
+            <h2>Upcoming Games</h2>
+            <StyledGames>
+              {upcomingGames?.map((game) => (
+                <Game game={game} key={game.id} />
+              ))}
+            </StyledGames>
+            <h2>Popular Games</h2>
+            <StyledGames>
+              {popularGames?.map((game) => (
+                <Game game={game} key={game.id} />
+              ))}
+            </StyledGames>
+            <h2>New Games</h2>
+            <StyledGames>
+              {newGames?.map((game) => (
+                <Game game={game} key={game.id} />
+              ))}
+            </StyledGames>
+          </LayoutGroup>
         </StyledGameList>
       )}
     </>

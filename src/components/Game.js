@@ -21,11 +21,15 @@ const Game = ({ game }) => {
   return (
     <>
       {id && name && released && background_image ? (
-        <StyledGame onClick={fetchDetailsHandler}>
+        <StyledGame layoutId={String(id)} onClick={fetchDetailsHandler}>
           <Link to={`game/${id}`}>
-            <h3>{name}</h3>
+            <motion.h3 layoutId={`title ${id}`}>{name}</motion.h3>
             <p>{released}</p>
-            <img src={getResizedImagePath(background_image, 640)} alt={name} />
+            <motion.img
+              layoutId={`image ${id}`}
+              src={getResizedImagePath(background_image, 640)}
+              alt={name}
+            />
           </Link>
         </StyledGame>
       ) : null}
