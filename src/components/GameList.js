@@ -7,6 +7,7 @@ import { fetchGames } from '../actions/gamesAction';
 import { useSelector } from 'react-redux';
 // Framer Motion
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 // Styled Components
 import styled from 'styled-components';
 import Game from './Game';
@@ -28,7 +29,7 @@ const GameList = () => {
   return (
     <>
       {!isLoading && (
-        <StyledGameList>
+        <StyledGameList variants={fadeIn} initial='hidden' animate='show'>
           <LayoutGroup>
             <AnimatePresence>
               {gameId && <GameDetails gameId={gameId} />}

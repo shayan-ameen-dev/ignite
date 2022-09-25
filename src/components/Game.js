@@ -7,6 +7,7 @@ import { fetchDetails } from '../actions/detailsAction';
 import styled from 'styled-components';
 // Framer Motion
 import { motion } from 'framer-motion';
+import { popUp } from '../animations';
 // Utils
 import { getResizedImagePath } from '../utils';
 
@@ -21,7 +22,13 @@ const Game = ({ game }) => {
   return (
     <>
       {id && name && released && background_image ? (
-        <StyledGame layoutId={String(id)} onClick={fetchDetailsHandler}>
+        <StyledGame
+          variants={popUp}
+          initial='hidden'
+          animate='show'
+          layoutId={String(id)}
+          onClick={fetchDetailsHandler}
+        >
           <Link to={`/game/${id}`}>
             <motion.h3 layoutId={`title ${String(id)}`}>{name}</motion.h3>
             <p>{released}</p>
