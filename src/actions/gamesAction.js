@@ -7,6 +7,10 @@ import {
 
 export function fetchGames() {
   return async (dispatch) => {
+    dispatch({
+      type: 'LOADING_GAMES',
+    });
+
     const newGamesResponse = await axios.get(getNewGamesUrl());
     const popularGamesResponse = await axios.get(getPopularGamesUrl());
     const upcomingGamesResponse = await axios.get(getUpcomingGamesUrl());

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 // Framer Motion
 import { motion } from 'framer-motion';
+import { getResizedImagePath } from '../utils';
 
 const GameDetails = () => {
   const navigate = useNavigate();
@@ -48,7 +49,10 @@ const GameDetails = () => {
               </StyledInfo>
             </StyledStats>
             <StyledMedia>
-              <img src={gameDetails?.background_image} alt='game' />
+              <img
+                src={getResizedImagePath(gameDetails?.background_image, 1280)}
+                alt='game'
+              />
             </StyledMedia>
             <StyledDescription>
               <p>{gameDetails?.description_raw}</p>
@@ -56,7 +60,7 @@ const GameDetails = () => {
             <StyledGallery>
               {gameScreenshots.results?.map((gameScreenshot) => (
                 <img
-                  src={gameScreenshot.image}
+                  src={getResizedImagePath(gameScreenshot.image, 1280)}
                   key={gameScreenshot.id}
                   alt='game'
                 />

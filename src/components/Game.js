@@ -7,6 +7,8 @@ import { fetchDetails } from '../actions/detailsAction';
 import styled from 'styled-components';
 // Framer Motion
 import { motion } from 'framer-motion';
+// Utils
+import { getResizedImagePath } from '../utils';
 
 const Game = ({ game }) => {
   const dispatch = useDispatch();
@@ -17,13 +19,17 @@ const Game = ({ game }) => {
 
   const { name, released, background_image, id } = game;
   return (
-    <StyledGame onClick={fetchDetailsHandler}>
-      <Link to={`game/${id}`}>
-        <h3>{name}</h3>
-        <p>{released}</p>
-        <img src={background_image} alt={name} />
-      </Link>
-    </StyledGame>
+    <>
+      {id && name && released && background_image ? (
+        <StyledGame onClick={fetchDetailsHandler}>
+          <Link to={`game/${id}`}>
+            <h3>{name}</h3>
+            <p>{released}</p>
+            <img src={getResizedImagePath(background_image, 640)} alt={name} />
+          </Link>
+        </StyledGame>
+      ) : null}
+    </>
   );
 };
 

@@ -19,7 +19,7 @@ const GameList = () => {
     dispatch(fetchGames());
   }, [dispatch]);
 
-  const { newGames, popularGames, upcomingGames } = useSelector(
+  const { newGames, popularGames, upcomingGames, isLoading } = useSelector(
     (state) => state.games
   );
 
@@ -27,27 +27,31 @@ const GameList = () => {
   const gameId = pathname.split('/')[2];
 
   return (
-    <StyledGameList>
-      {gameId && <GameDetails />}
-      <h2>Upcoming Games</h2>
-      <StyledGames>
-        {upcomingGames?.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </StyledGames>
-      <h2>Popular Games</h2>
-      <StyledGames>
-        {popularGames?.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </StyledGames>
-      <h2>New Games</h2>
-      <StyledGames>
-        {newGames?.map((game) => (
-          <Game game={game} key={game.id} />
-        ))}
-      </StyledGames>
-    </StyledGameList>
+    <>
+      {!isLoading && (
+        <StyledGameList>
+          {gameId && <GameDetails />}
+          <h2>Upcoming Games</h2>
+          <StyledGames>
+            {upcomingGames?.map((game) => (
+              <Game game={game} key={game.id} />
+            ))}
+          </StyledGames>
+          <h2>Popular Games</h2>
+          <StyledGames>
+            {popularGames?.map((game) => (
+              <Game game={game} key={game.id} />
+            ))}
+          </StyledGames>
+          <h2>New Games</h2>
+          <StyledGames>
+            {newGames?.map((game) => (
+              <Game game={game} key={game.id} />
+            ))}
+          </StyledGames>
+        </StyledGameList>
+      )}
+    </>
   );
 };
 

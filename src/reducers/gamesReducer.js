@@ -3,6 +3,7 @@ const initialState = {
   popularGames: [],
   searchedGames: [],
   upcomingGames: [],
+  isLoading: true,
 };
 
 export default function gamesReducer(state = initialState, action) {
@@ -14,6 +15,12 @@ export default function gamesReducer(state = initialState, action) {
         newGames,
         popularGames,
         upcomingGames,
+        isLoading: false,
+      };
+    case 'LOADING_GAMES':
+      return {
+        ...state,
+        isLoading: true,
       };
     default:
       return state;
