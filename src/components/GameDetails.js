@@ -8,15 +8,22 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 // Utils
 import { getResizedImagePath } from '../utils';
-// Svgs
+// Platform Svgs
 import apple from '../img/apple.svg';
 import gamepad from '../img/gamepad.svg';
 import nintendo from '../img/nintendo.svg';
 import playstation from '../img/playstation.svg';
 import steam from '../img/steam.svg';
 import xbox from '../img/xbox.svg';
+// Rating Stars
+import starEmpty from '../img/star-empty.png';
+import starFull from '../img/star-full.png';
 
 const GameDetails = ({ gameId }) => {
+  const { gameDetails, gameScreenshots, isLoading } = useSelector(
+    (state) => state.details
+  );
+
   const navigate = useNavigate();
 
   function exitGameDetailsHandler(event) {
@@ -48,9 +55,19 @@ const GameDetails = ({ gameId }) => {
     }
   }
 
-  const { gameDetails, gameScreenshots, isLoading } = useSelector(
-    (state) => state.details
-  );
+  function getRatingStars(rating) {
+    const stars = [];
+    const avgRating = Math.floor(rating);
+    for (let i = 1; i <= 5; i++) {
+      if (i <= avgRating) {
+        stars.push(<img src={starFull} key={i} alt='star' />);
+      } else {
+        stars.push(<img src={starEmpty} key={i} alt='star' />);
+      }
+    }
+
+    return stars;
+  }
 
   return (
     <>
@@ -67,6 +84,7 @@ const GameDetails = ({ gameId }) => {
                   {gameDetails?.name}
                 </motion.h3>
                 <p>Rating: {gameDetails?.rating}</p>
+                {getRatingStars(gameDetails?.rating)}
               </StyledRating>
               <StyledInfo>
                 <h3>Platforms</h3>
@@ -149,6 +167,12 @@ const StyledStats = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  img {
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+  }
 `;
 
 const StyledRating = styled(motion.div)``;
