@@ -8,6 +8,13 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 // Utils
 import { getResizedImagePath } from '../utils';
+// Svgs
+import apple from '../img/apple.svg';
+import gamepad from '../img/gamepad.svg';
+import nintendo from '../img/nintendo.svg';
+import playstation from '../img/playstation.svg';
+import steam from '../img/steam.svg';
+import xbox from '../img/xbox.svg';
 
 const GameDetails = ({ gameId }) => {
   const navigate = useNavigate();
@@ -21,6 +28,26 @@ const GameDetails = ({ gameId }) => {
     }
   }
 
+  function getPlatformSvg(platform) {
+    switch (platform) {
+      case 'iOS':
+        return apple;
+      case 'Nintendo Switch':
+        return nintendo;
+      case 'PlayStation 4':
+      case 'PlayStation 5':
+        return playstation;
+      case 'PC':
+        return steam;
+      case 'Xbox One':
+      case 'Xbox Series S/X':
+        return xbox;
+      default:
+        console.log(platform);
+        return gamepad;
+    }
+  }
+
   const { gameDetails, gameScreenshots, isLoading } = useSelector(
     (state) => state.details
   );
@@ -31,8 +58,9 @@ const GameDetails = ({ gameId }) => {
         <StyledCardShadow
           className='card-shadow'
           onClick={exitGameDetailsHandler}
+          layoutId={gameId}
         >
-          <StyledDetails layoutId={gameId}>
+          <StyledDetails>
             <StyledStats>
               <StyledRating>
                 <motion.h3 layoutId={`title ${gameId}`}>
@@ -44,9 +72,11 @@ const GameDetails = ({ gameId }) => {
                 <h3>Platforms</h3>
                 <StyledPlatforms>
                   {gameDetails.platforms?.map((mapedPlatform) => (
-                    <h3 key={mapedPlatform.platform.id}>
-                      {mapedPlatform.platform.name}
-                    </h3>
+                    <img
+                      src={getPlatformSvg(mapedPlatform.platform.name)}
+                      key={mapedPlatform.platform.id}
+                      alt={mapedPlatform.platform.name}
+                    />
                   ))}
                 </StyledPlatforms>
               </StyledInfo>
@@ -85,6 +115,7 @@ const StyledCardShadow = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
 
   &::-webkit-scrollbar {
     width: 0.5rem;
@@ -106,6 +137,7 @@ const StyledDetails = styled(motion.div)`
   background: white;
   position: absolute;
   left: 10%;
+  z-index: 10;
   color: black;
 
   img {
